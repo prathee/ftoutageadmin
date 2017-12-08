@@ -24,7 +24,7 @@ class Outage( models.Model ):
     """
 
     Service = models.ForeignKey( Outage_Service, null=True, on_delete=models.SET_NULL )
-    Prompt_Name = models.TextField( max_length=1000, help_text="Enter the corrosponding OutageManagement prompt file name " )
+    Prompt_Name = models.TextField( max_length=200, help_text="Enter the corrosponding OutageManagement prompt file name " )
     Outage_ID = models.CharField( max_length=200, help_text="Enter Outage Servcie Name" )
     Start_Date = models.DateTimeField( null=True, blank=False )
     End_Date = models.DateTimeField( null=True, blank=False )
