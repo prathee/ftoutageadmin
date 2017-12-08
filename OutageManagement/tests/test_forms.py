@@ -4,7 +4,7 @@ from django.test import TestCase
 
 import datetime
 from django.utils import timezone
-from outage.forms import RenewBookForm
+from OutageManagement.forms import RenewBookForm
 
 class RenewBookFormTest(TestCase):
 

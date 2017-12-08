@@ -1,7 +1,7 @@
 import os
 
-#Settings Crendentials Parser
-from gitignore_files import credentials_ftadmin
+#Setting Crendentials Parser
+import credentials_ftadmin
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,10 +17,10 @@ SECRET_KEY = credentials_ftadmin.login['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 #Set hosts to allow any app on Heroku and the local testing URL
-ALLOWED_HOSTS = ['outage.test.com','127.0.0.1']
+ALLOWED_HOSTS = ['OutageManagement.test.com','127.0.0.1']
 
 
 # Application definition
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Add our new application 
-    'outage.apps.OutageConfig', #This object was created for us in /outage/apps.py
+    'OutageManagement.apps.OutageConfig', #This object was created for us in /OutageManagement/apps.py
 ]
 
 MIDDLEWARE = [

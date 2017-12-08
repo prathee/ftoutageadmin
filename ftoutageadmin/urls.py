@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 
-# Use include() to add URLS from the outage application and authentication system
+# Use include() to add URLS from the OutageManagement application and authentication system
 from django.conf.urls import include
 
 
@@ -31,7 +31,7 @@ admin.site.site_title = _("FT Outage Admin")
 
 
 urlpatterns += [
-    url(r'^outage/', include('outage.urls')),
+    url(r'^OutageManagement/', include( 'OutageManagement.urls' ) ),
 ]
 
 
@@ -50,5 +50,5 @@ urlpatterns += [
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
-    url(r'^', RedirectView.as_view(url='/outage/', permanent=True)),
+    url(r'^', RedirectView.as_view(url='/OutageManagement/', permanent=True)),
 ]

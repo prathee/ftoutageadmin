@@ -5,3 +5,13 @@ psycopg2
 wheel==0.24.0
 whitenoise==3.2.2
 cx_Oracle==6.0.3
+beautifulsoup4==4.6.0
+django-mptt==0.8.7
+html5lib==0.999999999
+olefile==0.44
+peewee==2.10.2
+PyPDF2==1.26.0
+reportlab==3.4.0
+six==1.11.0
+webencodings==0.5.1
+xhtml2pdf==0.0.6

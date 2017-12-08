@@ -2,7 +2,7 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from outage.models import Author
+from OutageManagement.models import Author
 
 class AuthorModelTest(TestCase):
 
@@ -49,5 +49,5 @@ class AuthorModelTest(TestCase):
     def test_get_absolute_url(self):
         author=Author.objects.get(id=1)
         #This will also fail if the urlconf is not defined.
-        self.assertEquals(author.get_absolute_url(),'/outage/author/1')
+        self.assertEquals(author.get_absolute_url(),'/OutageManagement/author/1')
         

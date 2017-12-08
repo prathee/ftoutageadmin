@@ -3,7 +3,7 @@ from django.test import TestCase
 # Create your tests here.
 
 
-from outage.models import Author
+from OutageManagement.models import Author
 from django.core.urlresolvers import reverse
 
 class AuthorListViewTest(TestCase):
@@ -16,7 +16,7 @@ class AuthorListViewTest(TestCase):
            Author.objects.create(first_name='Christian %s' % author_num, last_name = 'Surname %s' % author_num,)
            
     def test_view_url_exists_at_desired_location(self): 
-        resp = self.client.get('/outage/authors/')
+        resp = self.client.get('/OutageManagement/authors/')
         self.assertEqual(resp.status_code, 200)  
            
     def test_view_url_accessible_by_name(self):
@@ -26,7 +26,7 @@ class AuthorListViewTest(TestCase):
     def test_view_uses_correct_template(self):
         resp = self.client.get(reverse('authors'))
         self.assertEqual(resp.status_code, 200)
-        self.assertTemplateUsed(resp, 'outage/author_list.html')
+        self.assertTemplateUsed(resp, 'OutageManagement/author_list.html')
         
     def test_pagination_is_ten(self):
         resp = self.client.get(reverse('authors'))
@@ -47,7 +47,7 @@ class AuthorListViewTest(TestCase):
 import datetime
 from django.utils import timezone
         
-from outage.models import BookInstance, Book, Genre, Language
+from OutageManagement.models import BookInstance, Book, Genre, Language
 from django.contrib.auth.models import User #Required to assign User as a borrower
 
 class LoanedBookInstancesByUserListViewTest(TestCase):
@@ -82,7 +82,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         
     def test_redirect_if_not_logged_in(self):
         resp = self.client.get(reverse('my-borrowed'))
-        self.assertRedirects(resp, '/accounts/login/?next=/outage/mybooks/')
+        self.assertRedirects(resp, '/accounts/login/?next=/OutageManagement/mybooks/')
 
     def test_logged_in_uses_correct_template(self):
         login = self.client.login(username='testuser1', password='12345')
@@ -94,7 +94,7 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
         self.assertEqual(resp.status_code, 200)
 
         #Check we used correct template
-        self.assertTemplateUsed(resp, 'outage/bookinstance_list_borrowed_user.html')
+        self.assertTemplateUsed(resp, 'OutageManagement/bookinstance_list_borrowed_user.html')
 
     def test_only_borrowed_books_in_list(self):
         login = self.client.login(username='testuser1', password='12345')
@@ -243,7 +243,7 @@ class RenewBookInstancesViewTest(TestCase):
         self.assertEqual( resp.status_code,200)
 
         #Check we used correct template
-        self.assertTemplateUsed(resp, 'outage/book_renew_librarian.html')
+        self.assertTemplateUsed(resp, 'OutageManagement/book_renew_librarian.html')
         
     def test_form_renewal_date_initially_has_date_three_weeks_in_future(self):
         login = self.client.login(username='testuser2', password='12345')
@@ -307,12 +307,12 @@ class AuthorCreateViewTest(TestCase):
         
     def test_redirect_if_not_logged_in(self):
         resp = self.client.get(reverse('author_create') )
-        self.assertRedirects(resp, '/accounts/login/?next=/outage/author/create/' )
+        self.assertRedirects(resp, '/accounts/login/?next=/OutageManagement/author/create/' )
         
     def test_redirect_if_logged_in_but_not_correct_permission(self):
         login = self.client.login(username='testuser1', password='12345')
         resp = self.client.get(reverse('author_create') )
-        self.assertRedirects(resp, '/accounts/login/?next=/outage/author/create/' )
+        self.assertRedirects(resp, '/accounts/login/?next=/OutageManagement/author/create/' )
 
     def test_logged_in_with_permission(self):
         login = self.client.login(username='testuser2', password='12345')
@@ -323,7 +323,7 @@ class AuthorCreateViewTest(TestCase):
         login = self.client.login(username='testuser2', password='12345')
         resp = self.client.get(reverse('author_create') )
         self.assertEqual( resp.status_code,200)
-        self.assertTemplateUsed(resp, 'outage/author_form.html')
+        self.assertTemplateUsed(resp, 'OutageManagement/author_form.html')
          
     def test_form_date_of_death_initially_set_to_expected_date(self):
         login = self.client.login(username='testuser2', password='12345')
@@ -340,4 +340,4 @@ class AuthorCreateViewTest(TestCase):
         resp = self.client.post(reverse('author_create'),{'first_name':'Christian Name','last_name':'Surname',} )
         #Manually check redirect because we don't know what author was created
         self.assertEqual( resp.status_code,302)
-        self.assertTrue( resp.url.startswith('/outage/author/') )
+        self.assertTrue( resp.url.startswith('/OutageManagement/author/') )
